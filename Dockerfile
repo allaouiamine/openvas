@@ -119,6 +119,14 @@ RUN cd /usr/local/bin/ && wget --no-check-certificate https://svn.wald.intevatio
 chmod +x openvas-check-setup
 RUN openvas-mkcert -q && \
     openvas-mkcert-client -n -i
+RUN RUN openvas-nvt-sync && \
+  openvas-scapdata-sync && \
+  openvas-certdata-sync
+RUN openvassd && \
+  openvasmd --rebuild --progress && \
+  openvassd && \
+  openvasmd && \
+  gsad
 RUN wget http://www.iana.org/assignments/service-names-port-numbers/service-names-port-numbers.xml && \
 openvas-portnames-update service-names-port-numbers.xml && \
 rm -rf service-names-port-numbers.xml
@@ -128,18 +136,10 @@ rm -rf /var/lib/apt/lists/* && \
 rm -rf /usr/local/src/* && rm -rf /tmp/* && \
 rm -rf /tmp/arachni*
 RUN openvasmd --create-user=admin --role=Admin && \
-openvasmd --user=admin --new-password=admin
-RUN openvas-nvt-sync && \
-openvas-scapdata-sync && \
-openvas-certdata-sync && \
+openvasmd --user=admin --new-password=admin && \
 echo 'unixsocket /tmp/redis.sock' > /etc/redis.conf && \
 echo 'unixsocketperm 777' >> /etc/redis.conf
 RUN redis-server /etc/redis.conf &
-RUN openvassd && \
-openvasmd --rebuild --progress && \
-openvassd && \
-openvasmd && \
-gsad
 EXPOSE 80 443 9390 9391 9392
 ADD supervisor.conf /etc/supervisord.conf
 ENTRYPOINT ["/usr/bin/supervisord","-c /etc/supervisord.conf"]
