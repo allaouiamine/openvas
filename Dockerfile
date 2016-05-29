@@ -1,6 +1,6 @@
 FROM debian
 RUN apt-get update -y && apt-get upgrade -y
-RUN apt-get install -y supervisord build-essential cmake bison flex libpcap-dev pkg-config libglib2.0-dev libgpgme11-dev uuid-dev \
+RUN apt-get install -y supervisor build-essential cmake bison flex libpcap-dev pkg-config libglib2.0-dev libgpgme11-dev uuid-dev \
 sqlfairy xmltoman doxygen libssh-dev libksba-dev libldap2-dev python-setuptools python-pip python-dev \
 libsqlite3-dev libmicrohttpd-dev libxml2-dev libxslt1-dev libpopt-dev heimdal-dev gcc-mingw-w64-i686 \
 xsltproc clang rsync rpm nsis alien sqlite3 libhiredis-dev libgcrypt11-dev libgnutls28-dev wget redis-server texlive-latex-base
