@@ -119,12 +119,12 @@ RUN cd /usr/local/bin/ && wget --no-check-certificate https://svn.wald.intevatio
 chmod +x openvas-check-setup
 RUN openvas-mkcert -q && \
     openvas-mkcert-client -n -i
-RUN openvas-nvt-sync && \
-  openvas-scapdata-sync && \
-  openvas-certdata-sync
+RUN openvas-nvt-sync
+RUN openvas-scapdata-sync
+RUN openvas-certdata-sync
 RUN openvassd && \
-  openvasmd --rebuild --progress && \
-  openvassd && \
+  openvasmd --rebuild --progress
+RUN  openvassd && \
   openvasmd && \
   gsad
 RUN wget http://www.iana.org/assignments/service-names-port-numbers/service-names-port-numbers.xml && \
