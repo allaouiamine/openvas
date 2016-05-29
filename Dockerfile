@@ -23,7 +23,7 @@ RUN cd openvas-smb-1.0.1 && \
   cmake . && \
   make && \
   make install && \
-  make rebuild-cache && \
+  make rebuild_cache && \
   ldconfig && \
   cd ..
 RUN cd openvas-libraries-8.0.7 && \
