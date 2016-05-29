@@ -119,7 +119,7 @@ RUN cd /usr/local/bin/ && wget --no-check-certificate https://svn.wald.intevatio
 chmod +x openvas-check-setup
 RUN openvas-mkcert -q && \
     openvas-mkcert-client -n -i
-RUN RUN openvas-nvt-sync && \
+RUN openvas-nvt-sync && \
   openvas-scapdata-sync && \
   openvas-certdata-sync
 RUN openvassd && \
