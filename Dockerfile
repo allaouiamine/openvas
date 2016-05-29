@@ -11,7 +11,7 @@ RUN wget http://wald.intevation.org/frs/download.php/2291/openvas-libraries-8.0.
   wget http://wald.intevation.org/frs/download.php/2299/greenbone-security-assistant-6.0.10.tar.gz && \
   wget http://wald.intevation.org/frs/download.php/2332/openvas-cli-1.4.4.tar.gz && \
   wget http://wald.intevation.org/frs/download.php/1975/openvas-smb-1.0.1.tar.gz && \
-  wget http://nmap.org/dist/nmap-5.51.6.tgz &&
+  wget http://nmap.org/dist/nmap-5.51.6.tgz && \
   tar xvf openvas-smb-1.0.1.tar.gz && \
   tar xvf greenbone-security-assistant-6.*.tar.gz && \
   tar xvf openvas-libraries-8.*.tar.gz && \
