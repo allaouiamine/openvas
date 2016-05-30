@@ -134,7 +134,7 @@ RUN apt-get clean -yq && \
 apt-get autoremove -yq && \
 rm -rf /var/lib/apt/lists/* && \
 rm -rf /usr/local/src/* && rm -rf /tmp/* && \
-rm -rf /tmp/arachni*
+rm -rf /tmp/arachni* && rm -rf /osp/*.tar.gz
 RUN openvasmd --create-user=admin --role=Admin && \
 openvasmd --user=admin --new-password=admin && \
 echo 'unixsocket /tmp/redis.sock' > /etc/redis.conf && \
