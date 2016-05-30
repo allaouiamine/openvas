@@ -141,5 +141,5 @@ echo 'unixsocket /tmp/redis.sock' > /etc/redis.conf && \
 echo 'unixsocketperm 777' >> /etc/redis.conf
 RUN redis-server /etc/redis.conf &
 EXPOSE 80 443 9390 9391 9392
-ADD supervisor.conf /etc/supervisord.conf
-ENTRYPOINT ["/usr/bin/supervisord","-c /etc/supervisord.conf"]
+ADD supervisor.conf /etc/supervisor/conf.d/supervisord.conf
+ENTRYPOINT ["/usr/bin/supervisord"]
