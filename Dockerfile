@@ -1,4 +1,5 @@
 FROM debian
+MAINTAINER Mohamed Amine ALLAOUI <allaoui.amine@gmail.com>
 RUN apt-get update -y && apt-get upgrade -y
 RUN apt-get install -y supervisor build-essential cmake bison flex libpcap-dev pkg-config libglib2.0-dev libgpgme11-dev uuid-dev \
 sqlfairy xmltoman doxygen libssh-dev libksba-dev libldap2-dev python-setuptools python-pip python-dev \
@@ -126,11 +127,19 @@ RUN openvassd && \
   openvasmd --rebuild --progress
 RUN  openvassd && \
   openvasmd && \
-  gsad
+  gsad && \
+  ospd-debsecan -p 2346 -b 127.0.0.1 -k /usr/local/var/lib/openvas/private/CA/clientkey.pem -c /usr/local/var/lib/openvas/CA/clientcert.pem --ca-file /usr/local/var/lib/openvas/CA/cacert.pem & && \
+  ospd-ancor -p 2347 -b 127.0.0.1 -k /usr/local/var/lib/openvas/private/CA/clientkey.pem -c /usr/local/var/lib/openvas/CA/clientcert.pem --ca-file /usr/local/var/lib/openvas/CA/cacert.pem & && \
+  ospd-acunetix -p 2348 -b 127.0.0.1 -k /usr/local/var/lib/openvas/private/CA/clientkey.pem -c /usr/local/var/lib/openvas/CA/clientcert.pem --ca-file /usr/local/var/lib/openvas/CA/cacert.pem & && \
+  ospd-ovaldi -p 2349 -b 127.0.0.1 -k /usr/local/var/lib/openvas/private/CA/clientkey.pem -c /usr/local/var/lib/openvas/CA/clientcert.pem --ca-file /usr/local/var/lib/openvas/CA/cacert.pem & && \
+  ospd-paloalto -p 2350 -b 127.0.0.1 -k /usr/local/var/lib/openvas/private/CA/clientkey.pem -c /usr/local/var/lib/openvas/CA/clientcert.pem --ca-file /usr/local/var/lib/openvas/CA/cacert.pem & && \
+  ospd-w3af -p 2351 -b 127.0.0.1 -k /usr/local/var/lib/openvas/private/CA/clientkey.pem -c /usr/local/var/lib/openvas/CA/clientcert.pem --ca-file /usr/local/var/lib/openvas/CA/cacert.pem & 
+  
 RUN wget http://www.iana.org/assignments/service-names-port-numbers/service-names-port-numbers.xml && \
 openvas-portnames-update service-names-port-numbers.xml && \
 rm -rf service-names-port-numbers.xml
-RUN apt-get clean -yq && \
+RUN rm -rf /osp/ && \
+apt-get clean -yq && \
 apt-get autoremove -yq && \
 rm -rf /var/lib/apt/lists/* && \
 rm -rf /usr/local/src/* && rm -rf /tmp/* && \
