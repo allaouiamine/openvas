@@ -72,3 +72,11 @@ stdout_logfile = /dev/stdout
 stderr_logfile = /dev/stderr
 autorestart=true
 startsecs=0
+
+[program:ospd-w3af]
+autostart=true
+command=ospd-w3af -p 2351 -b 127.0.0.1 -k /usr/local/var/lib/openvas/private/CA/clientkey.pem -c /usr/local/var/lib/openvas/CA/clientcert.pem --ca-file /usr/local/var/lib/openvas/CA/cacert.pem
+stdout_logfile = /dev/stdout
+stderr_logfile = /dev/stderr
+autorestart=true
+startsecs=0
