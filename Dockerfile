@@ -132,8 +132,8 @@ RUN  openvassd && \
   ospd-ancor -p 2347 -b 127.0.0.1 -k /usr/local/var/lib/openvas/private/CA/clientkey.pem -c /usr/local/var/lib/openvas/CA/clientcert.pem --ca-file /usr/local/var/lib/openvas/CA/cacert.pem & && \
   ospd-acunetix -p 2348 -b 127.0.0.1 -k /usr/local/var/lib/openvas/private/CA/clientkey.pem -c /usr/local/var/lib/openvas/CA/clientcert.pem --ca-file /usr/local/var/lib/openvas/CA/cacert.pem & && \
   ospd-ovaldi -p 2349 -b 127.0.0.1 -k /usr/local/var/lib/openvas/private/CA/clientkey.pem -c /usr/local/var/lib/openvas/CA/clientcert.pem --ca-file /usr/local/var/lib/openvas/CA/cacert.pem & && \
-  ospd-paloalto -p 2350 -b 127.0.0.1 -k /usr/local/var/lib/openvas/private/CA/clientkey.pem -c /usr/local/var/lib/openvas/CA/clientcert.pem --ca-file /usr/local/var/lib/openvas/CA/cacert.pem & && \
-  ospd-w3af -p 2351 -b 127.0.0.1 -k /usr/local/var/lib/openvas/private/CA/clientkey.pem -c /usr/local/var/lib/openvas/CA/clientcert.pem --ca-file /usr/local/var/lib/openvas/CA/cacert.pem & 
+  ospd-paloalto -p 2350 -b 127.0.0.1 -k /usr/local/var/lib/openvas/private/CA/clientkey.pem -c /usr/local/var/lib/openvas/CA/clientcert.pem --ca-file /usr/local/var/lib/openvas/CA/cacert.pem & 
+  #ospd-w3af -p 2351 -b 127.0.0.1 -k /usr/local/var/lib/openvas/private/CA/clientkey.pem -c /usr/local/var/lib/openvas/CA/clientcert.pem --ca-file /usr/local/var/lib/openvas/CA/cacert.pem & 
   
 RUN wget http://www.iana.org/assignments/service-names-port-numbers/service-names-port-numbers.xml && \
 openvas-portnames-update service-names-port-numbers.xml && \
@@ -150,8 +150,8 @@ openvasmd --create-scanner=ospd-debsecan --scanner-host=localhost --scanner-port
 openvasmd --create-scanner=ospd-ancor --scanner-host=localhost --scanner-port=2347 --scanner-type=OSP --scanner-ca-pub=/usr/local/var/lib/openvas/CA/cacert.pem --scanner-key-pub=/usr/local/var/lib/openvas/CA/clientcert.pem --scanner-key-priv=/usr/local/var/lib/openvas/private/CA/clientkey.pem && \
 openvasmd --create-scanner=ospd-acunetix --scanner-host=localhost --scanner-port=2348 --scanner-type=OSP --scanner-ca-pub=/usr/local/var/lib/openvas/CA/cacert.pem --scanner-key-pub=/usr/local/var/lib/openvas/CA/clientcert.pem --scanner-key-priv=/usr/local/var/lib/openvas/private/CA/clientkey.pem && \
 openvasmd --create-scanner=ospd-ovaldi --scanner-host=localhost --scanner-port=2349 --scanner-type=OSP --scanner-ca-pub=/usr/local/var/lib/openvas/CA/cacert.pem --scanner-key-pub=/usr/local/var/lib/openvas/CA/clientcert.pem --scanner-key-priv=/usr/local/var/lib/openvas/private/CA/clientkey.pem && \
-openvasmd --create-scanner=ospd-paloalto --scanner-host=localhost --scanner-port=2350 --scanner-type=OSP --scanner-ca-pub=/usr/local/var/lib/openvas/CA/cacert.pem --scanner-key-pub=/usr/local/var/lib/openvas/CA/clientcert.pem --scanner-key-priv=/usr/local/var/lib/openvas/private/CA/clientkey.pem && \
-openvasmd --create-scanner=ospd-w3af --scanner-host=localhost --scanner-port=2351 --scanner-type=OSP --scanner-ca-pub=/usr/local/var/lib/openvas/CA/cacert.pem --scanner-key-pub=/usr/local/var/lib/openvas/CA/clientcert.pem --scanner-key-priv=/usr/local/var/lib/openvas/private/CA/clientkey.pem && \
+openvasmd --create-scanner=ospd-paloalto --scanner-host=localhost --scanner-port=2350 --scanner-type=OSP --scanner-ca-pub=/usr/local/var/lib/openvas/CA/cacert.pem --scanner-key-pub=/usr/local/var/lib/openvas/CA/clientcert.pem --scanner-key-priv=/usr/local/var/lib/openvas/private/CA/clientkey.pem 
+#openvasmd --create-scanner=ospd-w3af --scanner-host=localhost --scanner-port=2351 --scanner-type=OSP --scanner-ca-pub=/usr/local/var/lib/openvas/CA/cacert.pem --scanner-key-pub=/usr/local/var/lib/openvas/CA/clientcert.pem --scanner-key-priv=/usr/local/var/lib/openvas/private/CA/clientkey.pem && \
 echo 'unixsocket /tmp/redis.sock' > /etc/redis.conf && \
 echo 'unixsocketperm 777' >> /etc/redis.conf
 RUN redis-server /etc/redis.conf &
