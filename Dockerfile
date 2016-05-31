@@ -138,8 +138,7 @@ RUN  openvassd && \
 RUN wget http://www.iana.org/assignments/service-names-port-numbers/service-names-port-numbers.xml && \
 openvas-portnames-update service-names-port-numbers.xml && \
 rm -rf service-names-port-numbers.xml
-RUN rm -rf /osp/ && \
-apt-get clean -yq && \
+RUN apt-get clean -yq && \
 apt-get autoremove -yq && \
 rm -rf /var/lib/apt/lists/* && \
 rm -rf /usr/local/src/* && rm -rf /tmp/* && \
