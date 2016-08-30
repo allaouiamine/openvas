@@ -151,7 +151,7 @@ openvasmd --create-scanner=ospd-acunetix --scanner-host=localhost --scanner-port
 openvasmd --create-scanner=ospd-ovaldi --scanner-host=localhost --scanner-port=2349 --scanner-type=OSP --scanner-ca-pub=/usr/local/var/lib/openvas/CA/cacert.pem --scanner-key-pub=/usr/local/var/lib/openvas/CA/clientcert.pem --scanner-key-priv=/usr/local/var/lib/openvas/private/CA/clientkey.pem && \
 openvasmd --create-scanner=ospd-paloalto --scanner-host=localhost --scanner-port=2350 --scanner-type=OSP --scanner-ca-pub=/usr/local/var/lib/openvas/CA/cacert.pem --scanner-key-pub=/usr/local/var/lib/openvas/CA/clientcert.pem --scanner-key-priv=/usr/local/var/lib/openvas/private/CA/clientkey.pem 
 #openvasmd --create-scanner=ospd-w3af --scanner-host=localhost --scanner-port=2351 --scanner-type=OSP --scanner-ca-pub=/usr/local/var/lib/openvas/CA/cacert.pem --scanner-key-pub=/usr/local/var/lib/openvas/CA/clientcert.pem --scanner-key-priv=/usr/local/var/lib/openvas/private/CA/clientkey.pem && \
-echo 'unixsocket /tmp/redis.sock' > /etc/redis.conf && \
+RUN echo 'unixsocket /tmp/redis.sock' > /etc/redis.conf && \
 echo 'unixsocketperm 777' >> /etc/redis.conf
 RUN redis-server /etc/redis.conf &
 EXPOSE 80 443 9390 9391 9392
