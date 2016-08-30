@@ -127,12 +127,12 @@ RUN openvassd && \
   openvasmd --rebuild --progress
 RUN  openvassd && \
   openvasmd && \
-  gsad && \
-  ospd-debsecan -p 2346 -b 127.0.0.1 -k /usr/local/var/lib/openvas/private/CA/clientkey.pem -c /usr/local/var/lib/openvas/CA/clientcert.pem --ca-file /usr/local/var/lib/openvas/CA/cacert.pem & && \
-  ospd-ancor -p 2347 -b 127.0.0.1 -k /usr/local/var/lib/openvas/private/CA/clientkey.pem -c /usr/local/var/lib/openvas/CA/clientcert.pem --ca-file /usr/local/var/lib/openvas/CA/cacert.pem & && \
-  ospd-acunetix -p 2348 -b 127.0.0.1 -k /usr/local/var/lib/openvas/private/CA/clientkey.pem -c /usr/local/var/lib/openvas/CA/clientcert.pem --ca-file /usr/local/var/lib/openvas/CA/cacert.pem & && \
-  ospd-ovaldi -p 2349 -b 127.0.0.1 -k /usr/local/var/lib/openvas/private/CA/clientkey.pem -c /usr/local/var/lib/openvas/CA/clientcert.pem --ca-file /usr/local/var/lib/openvas/CA/cacert.pem & && \
-  ospd-paloalto -p 2350 -b 127.0.0.1 -k /usr/local/var/lib/openvas/private/CA/clientkey.pem -c /usr/local/var/lib/openvas/CA/clientcert.pem --ca-file /usr/local/var/lib/openvas/CA/cacert.pem & 
+  gsad
+RUN ospd-debsecan -p 2346 -b 127.0.0.1 -k /usr/local/var/lib/openvas/private/CA/clientkey.pem -c /usr/local/var/lib/openvas/CA/clientcert.pem --ca-file /usr/local/var/lib/openvas/CA/cacert.pem &
+RUN ospd-ancor -p 2347 -b 127.0.0.1 -k /usr/local/var/lib/openvas/private/CA/clientkey.pem -c /usr/local/var/lib/openvas/CA/clientcert.pem --ca-file /usr/local/var/lib/openvas/CA/cacert.pem &
+RUN ospd-acunetix -p 2348 -b 127.0.0.1 -k /usr/local/var/lib/openvas/private/CA/clientkey.pem -c /usr/local/var/lib/openvas/CA/clientcert.pem --ca-file /usr/local/var/lib/openvas/CA/cacert.pem &
+RUN ospd-ovaldi -p 2349 -b 127.0.0.1 -k /usr/local/var/lib/openvas/private/CA/clientkey.pem -c /usr/local/var/lib/openvas/CA/clientcert.pem --ca-file /usr/local/var/lib/openvas/CA/cacert.pem &
+RUN ospd-paloalto -p 2350 -b 127.0.0.1 -k /usr/local/var/lib/openvas/private/CA/clientkey.pem -c /usr/local/var/lib/openvas/CA/clientcert.pem --ca-file /usr/local/var/lib/openvas/CA/cacert.pem & 
   #ospd-w3af -p 2351 -b 127.0.0.1 -k /usr/local/var/lib/openvas/private/CA/clientkey.pem -c /usr/local/var/lib/openvas/CA/clientcert.pem --ca-file /usr/local/var/lib/openvas/CA/cacert.pem & 
   
 RUN wget http://www.iana.org/assignments/service-names-port-numbers/service-names-port-numbers.xml && \
